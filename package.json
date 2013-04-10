@@ -1,7 +1,7 @@
 {
   "name": "tic",
   "description": "intervals and timeouts using a delta tick. Useful for timing things with games.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/shama/tic",
   "author": {
     "name": "Kyle Robinson Young",

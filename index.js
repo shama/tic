@@ -6,37 +6,38 @@
  * Licensed under the MIT license.
  */
 
-var tic = module.exports = {};
-var things = [];
+function Tic() { this._things = []; }
+module.exports = function() { return new Tic(); };
 
-function stack(thing) {
-  things.push(thing);
-  var i = things.length - 1;
-  return function() { delete things[i]; }
-}
+Tic.prototype._stack = function(thing) {
+  this._things.push(thing);
+  var i = this._things.length - 1;
+  return function() { delete this._things[i]; }
+};
 
-tic.interval = tic.setInterval = function(fn, at) {
-  return stack({
+Tic.prototype.interval = Tic.prototype.setInterval = function(fn, at) {
+  return this._stack({
     fn: fn, at: at, args: Array.prototype.slice.call(arguments, 2),
     elapsed: 0, once: false
   });
 };
 
-tic.timeout = tic.setTimeout = function(fn, at) {
-  return stack({
+Tic.prototype.timeout = Tic.prototype.setTimeout = function(fn, at) {
+  return this._stack({
     fn: fn, at: at, args: Array.prototype.slice.call(arguments, 2),
     elapsed: 0, once: true
   });
 };
 
-tic.tick = function(dt) {
-  things.forEach(function(thing, i) {
+Tic.prototype.tick = function(dt) {
+  var self = this;
+  self._things.forEach(function(thing, i) {
     thing.elapsed += dt;
     if (thing.elapsed > thing.at) {
       thing.elapsed -= thing.at;
       thing.fn.apply(thing.fn, thing.args || []);
       if (thing.once) {
-        delete things[i];
+        delete self._things[i];
       }
     }
   });
