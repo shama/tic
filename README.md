@@ -1,6 +1,6 @@
 # tic
 
-setInterval/setTimeout using a delta tick. Useful for timing things with games.
+intervals and timeouts using a delta tick. Useful for timing things with games.
 
 ## example
 
