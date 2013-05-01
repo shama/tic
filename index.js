@@ -10,9 +10,10 @@ function Tic() { this._things = []; }
 module.exports = function() { return new Tic(); };
 
 Tic.prototype._stack = function(thing) {
-  this._things.push(thing);
-  var i = this._things.length - 1;
-  return function() { delete this._things[i]; }
+  var self = this;
+  self._things.push(thing);
+  var i = self._things.length - 1;
+  return function() { delete self._things[i]; }
 };
 
 Tic.prototype.interval = Tic.prototype.setInterval = function(fn, at) {
