@@ -2,6 +2,8 @@
 
 intervals and timeouts using a delta tick. Useful for timing things with games.
 
+![tic](http://dontkry.com/images/repos/tic.png)
+
 ## example
 
 ```js
