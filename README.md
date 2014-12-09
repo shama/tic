@@ -44,6 +44,7 @@ npm install tic
 ```
 
 ## release history
+* 1.0.0 - delta optional in tick
 * 0.2.1 - fix bug with clearing timer
 * 0.2.0 - now returns an instance of Tic for multiple timers
 * 0.1.0 - initial release
