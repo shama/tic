@@ -50,5 +50,5 @@ npm install tic
 * 0.1.0 - initial release
 
 ## license
-Copyright (c) 2014 Kyle Robinson Young 
+Copyright (c) 2014 Kyle Robinson Young  
 Licensed under the MIT license.
