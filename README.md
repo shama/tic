@@ -33,7 +33,7 @@ Runs the function `fn` at the given `time` interval.
 ### `tic.timeout(fn, time, [param1, param2, ...])`
 Runs the function `fn` only once at the given `time`.
 
-### `tic.tick(delta)`
+### `tic.tick([delta])`
 Use to advance the timer.
 
 ## install

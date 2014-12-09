@@ -6,7 +6,18 @@
  * Licensed under the MIT license.
  */
 
-function Tic() { this._things = []; }
+var now = (function() {
+  var p = window.performance || Object.create(null);
+  return function() {
+    var n = p.now || p.webkitNow || p.mozNow || p.msNow || p.oNow || function() { return (new Date()).getTime() };
+    return n.call(p);
+  }
+}());
+
+function Tic() {
+  this._things = [];
+  this._dt = -1;
+}
 module.exports = function() { return new Tic(); };
 
 Tic.prototype._stack = function(thing) {
@@ -32,6 +43,12 @@ Tic.prototype.timeout = Tic.prototype.setTimeout = function(fn, at) {
 
 Tic.prototype.tick = function(dt) {
   var self = this;
+  if (arguments.length < 1) {
+    var t = now()
+    if (this._dt < 0) this._dt = t
+    dt = t - this._dt
+    this._dt = t
+  }
   self._things.forEach(function(thing, i) {
     thing.elapsed += dt;
     if (thing.elapsed > thing.at) {
